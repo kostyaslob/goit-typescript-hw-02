@@ -20,8 +20,7 @@ export default function SearchBar({ onSearch }) {
                 <Field className={css.field}
                     type="text"
                     name="topic"
-                    placeholder="Search images and photos"
-                    
+                    placeholder="Search images and photos"                    
                     />
                 <button className={css.button}type="submit">Search</button>
             </Form>
