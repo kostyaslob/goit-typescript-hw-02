@@ -20,6 +20,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
                     toast.error("Please enter the text to search!");
                     return;
                 }
+
                 onSearch(trimmedTopic);
                 actions.resetForm();
             }}
@@ -30,7 +31,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
                     name="topic"
                     placeholder="Search images and photos"                    
                     />
-                <button className={css.button}type="submit">Search</button>
+                <button className={css.button} type="submit">Search</button>
             </Form>
         </Formik>
     );
