@@ -3,15 +3,17 @@ import axios from "axios";
 const ACCESS_KEY = "dhtOVxmu7cu8PZgWuDAWjUcuIGInl6fXWobQbH4YkWM";
 axios.defaults.baseURL = "https://api.unsplash.com";
 
-interface ImageResult {
-  results: {
-    id: string;
-    alt_description: string | null;
-    urls: {
-      small: string;
-      regular: string;
-    }
-  }[];
+export interface Image {
+  id: string;
+  alt_description: string | null;
+  urls: {
+    small: string;
+    regular: string;
+  };
+}
+
+export interface ImageResult {
+  results: Image[];
   total: number;
   total_pages: number;
 }
@@ -25,7 +27,5 @@ export const fetchImages = async (topic: string, currentPage: number): Promise<I
             client_id: ACCESS_KEY
           }
     })
-  console.log(response.data)
-  return response.data
-  
+  return response.data  
 }   

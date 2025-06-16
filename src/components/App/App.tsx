@@ -1,6 +1,6 @@
 import css from "./App.module.css";
 import { useState, useEffect } from 'react';
-import { fetchImages } from "../images-api";
+import { fetchImages, Image, ImageResult } from "../images-api";
 import toast, { Toaster } from 'react-hot-toast';
 
 import SearchBar from "../SearchBar/SearchBar";
@@ -11,17 +11,17 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn"
 import ImageModal from "../ImageModal/ImageModal";
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [totalPages, setTotalPages] = useState(0);
+  const [images, setImages] = useState<Image[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [totalPages, setTotalPages] = useState<number>(0);
   
-  const [topic, setTopic] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [topic, setTopic] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleSearch = async (newTopic) => {
+  const handleSearch = async (newTopic: string) => {
     setTopic(newTopic);
     setCurrentPage(1);
     setImages([]);
@@ -31,7 +31,7 @@ export default function App() {
     setCurrentPage(currentPage + 1)
   }
 
-  const openModal = (image) => {
+  const openModal = (image: string) => {
     setSelectedImage(image);
     setIsModalOpen(true);
   }
@@ -50,7 +50,7 @@ export default function App() {
       try {
         setIsError(false);
         setIsLoading(true);
-        const data = await fetchImages(topic, currentPage);
+        const data: ImageResult = await fetchImages(topic, currentPage);
 
         if (data.results.length === 0 && currentPage === 1) {
           toast.error("No results found for your search query.");
