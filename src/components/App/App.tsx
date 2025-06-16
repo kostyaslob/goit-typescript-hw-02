@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage"
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn"
 import ImageModal from "../ImageModal/ImageModal";
 
@@ -18,7 +18,7 @@ export default function App() {
   
   const [topic, setTopic] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleSearch = async (newTopic: string) => {
@@ -31,7 +31,7 @@ export default function App() {
     setCurrentPage(currentPage + 1)
   }
 
-  const openModal = (image: string) => {
+  const openModal = (image: Image) => {
     setSelectedImage(image);
     setIsModalOpen(true);
   }

@@ -1,9 +1,16 @@
 import css from "./ImageModal.module.css";
 import Modal from 'react-modal';
+import { Image } from "../images-api";
 
 Modal.setAppElement('#root');
 
-export default function ImageModal({ isOpen, onClose, image }) {
+interface ImageModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  image: Image;
+}
+
+export default function ImageModal({ isOpen, onClose, image }: ImageModalProps) {
   const handleClose = () => {
     onClose();
   };
@@ -18,7 +25,7 @@ export default function ImageModal({ isOpen, onClose, image }) {
       shouldCloseOnOverlayClick={true} 
       shouldCloseOnEsc={true}
     >
-      <img src={image.urls.regular} alt={image.alt_description} />
+      <img src={image.urls.regular} alt={image.alt_description ?? "Image"} />
     </Modal>
   );
 }

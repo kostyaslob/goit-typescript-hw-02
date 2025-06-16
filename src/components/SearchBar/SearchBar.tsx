@@ -1,6 +1,6 @@
 import css from "./SearchBar.module.css";
 import { Field, Form, Formik } from "formik";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 interface SearchBarProps {
   onSearch: (topic: string) => void;
